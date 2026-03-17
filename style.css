@@ -1,47 +1,125 @@
-body {
+* {
     margin: 0;
-    background: #0a0a0a;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.terminal {
+body {
+    background: black;
+    font-family: 'Courier New', monospace;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* TELA 1: CÓDIGOS INÚTEIS */
+#telaCodigos {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 500px;
-    padding: 20px 15px;
+    height: 100vh;
+    background: black;
+    color: #00ff00;
+    padding: 20px;
+    font-size: 18px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-all;
+    display: block;
+    z-index: 10;
+}
+
+.codigoLouco {
+    opacity: 0.8;
+    animation: piscaCodigo 0.1s infinite;
+}
+
+@keyframes piscaCodigo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* TELA 2: TERMINAL */
+#telaTerminal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.terminal-box {
+    width: 80%;
+    max-width: 900px;
+    padding: 40px;
     background: #111;
-    border: 2px solid #00ff00;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-    border-radius: 8px;
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
 }
 
 .terminal-line {
-    margin: 12px 0;
-    font-size: 16px;
-    line-height: 1.5;
-    min-height: 24px;
+    color: #00ff00;
+    font-size: 28px;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+    border-right: 3px solid transparent;
     white-space: pre-wrap;
-    word-break: break-word;
-    border-right: 2px solid transparent;
 }
 
 .terminal-line.typing {
-    border-right: 2px solid #00ff00;
-    animation: blink 0.8s infinite;
+    border-right: 3px solid #00ff00;
+    animation: blink 1s infinite;
 }
 
-@keyframes blink {
-    0%, 100% { border-color: #00ff00; }
-    50% { border-color: transparent; }
+/* TELA 3: CAIXA BRANCA */
+#telaFalas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
 }
 
-.video-container {
-    position: fixed;
+.caixa-branca {
+    background: white;
+    color: black;
+    width: 80%;
+    max-width: 800px;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+    font-family: 'Arial', sans-serif;
+    animation: aparece 1s;
+}
+
+.fala {
+    font-size: 24px;
+    margin: 25px 0;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.fala1 { animation-delay: 0.5s; }
+.fala2 { animation-delay: 2s; }
+.fala3 { animation-delay: 3.5s; }
+.fala4 { animation-delay: 5s; }
+.fala5 { animation-delay: 6.5s; }
+.fala6 { animation-delay: 8s; }
+
+/* TELA 4: GIF FINAL */
+#telaGif {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -51,28 +129,42 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 1000;
-    padding: 15px;
-    box-sizing: border-box;
+    z-index: 40;
 }
 
-.video-container iframe {
-    max-width: 100%;
-    height: auto;
-    min-height: 250px;
-    border: 3px solid #00ff00;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
-}
-
-.video-message {
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    font-size: 22px;
-    margin-top: 20px;
-    text-transform: uppercase;
-    animation: piscar 1s infinite;
+.gif-container {
     text-align: center;
+}
+
+.gif-container img {
+    max-width: 90%;
+    max-height: 70vh;
+    border: 5px solid #00ff00;
+    border-radius: 20px;
+    box-shadow: 0 0 50px #00ff00;
+}
+
+.final-message {
+    color: #00ff00;
+    font-size: 32px;
+    margin-top: 30px;
+    font-family: 'Courier New', monospace;
+    animation: piscar 1s infinite;
+}
+
+/* ANIMAÇÕES */
+@keyframes blink {
+    0%, 100% { border-color: #00ff00; }
+    50% { border-color: transparent; }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes aparece {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
 }
 
 @keyframes piscar {
