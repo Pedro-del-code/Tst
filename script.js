@@ -1,65 +1,80 @@
-// GERAR CÓDIGOS INÚTEIS LOUCOS
-function gerarCodigosInuteis() {
-    let div = document.getElementById('telaCodigos');
-    let codigos = '';
-    for(let i = 0; i < 200; i++) {
-        codigos += Math.random().toString(36).substring(7) + ' ';
-        codigos += 'ERRO_0x' + Math.floor(Math.random()*1000) + ' ';
-        codigos += 'sys32_' + Math.random()*100 + ' ';
-        codigos += 'root@' + Math.random()*999 + ' ';
-        codigos += 'FALHA_' + Math.floor(Math.random()*999) + '\n';
+// GERAR CÓDIGOS MATRIX LOUCOS
+const matrixDiv = document.getElementById('matrix');
+const caracteres = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+
+function gerarMatrix() {
+    let linhas = '';
+    for(let i = 0; i < 50; i++) {
+        for(let j = 0; j < 30; j++) {
+            linhas += caracteres[Math.floor(Math.random() * caracteres.length)];
+        }
+        linhas += ' ' + Math.random().toString(36).substring(2, 8).toUpperCase() + ' ';
+        linhas += 'ERRO_0x' + Math.floor(Math.random()*9999).toString(16);
+        linhas += ' SYS_' + Math.floor(Math.random()*999);
+        linhas += ' root@' + Math.random().toString(36).substring(2, 10);
+        linhas += '\n';
     }
-    div.innerHTML = codigos;
+    matrixDiv.innerHTML = linhas;
 }
 
-gerarCodigosInuteis();
+// ATUALIZA RÁPIDO PRA SIMULAR CHUVA DE CÓDIGOS
+setInterval(gerarMatrix, 100);
 
-// APÓS 5 SEGUNDOS, MOSTRA O TERMINAL
+// DEPOIS DE 8 SEGUNDOS, MOSTRA O TERMINAL
 setTimeout(() => {
-    document.getElementById('telaCodigos').style.display = 'none';
-    document.getElementById('telaTerminal').style.display = 'flex';
+    // PARA O MATRIX
+    clearInterval();
+    matrixDiv.style.opacity = '0';
     
-    // DIGITAR TEXTO DO TERMINAL
-    const linhas = [
-        { elemento: 'termLine1', texto: "_iniciando sistema. . .", delay: 30 },
-        { elemento: 'termLine2', texto: "permissão sucedida professor Ricardo.", delay: 40 }
-    ];
-    
-    let charIndex = 0;
-    let linhaIndex = 0;
-    
-    function digitarLinha() {
-        if (linhaIndex < linhas.length) {
-            const linha = linhas[linhaIndex];
-            const elemento = document.getElementById(linha.elemento);
-            
-            if (charIndex < linha.texto.length) {
-                elemento.innerHTML += linha.texto[charIndex];
-                charIndex++;
-                setTimeout(digitarLinha, linha.delay);
-            } else {
-                charIndex = 0;
-                linhaIndex++;
-                if (linhaIndex < linhas.length) {
-                    setTimeout(digitarLinha, 500);
+    setTimeout(() => {
+        matrixDiv.style.display = 'none';
+        document.getElementById('terminal').style.display = 'flex';
+        
+        // DIGITAR TERMINAL
+        const termLines = [
+            { id: 'term1', texto: "_iniciando sistema...", delay: 40 },
+            { id: 'term2', texto: "Sistema ativado.", delay: 40 },
+            { id: 'term3', texto: "Bem vindo professor/professora.", delay: 40 }
+        ];
+        
+        let lineIndex = 0;
+        let charIndex = 0;
+        
+        function digitarTerminal() {
+            if (lineIndex < termLines.length) {
+                const linha = termLines[lineIndex];
+                const elemento = document.getElementById(linha.id);
+                elemento.classList.add('typing');
+                
+                if (charIndex < linha.texto.length) {
+                    elemento.innerHTML += linha.texto[charIndex];
+                    charIndex++;
+                    setTimeout(digitarTerminal, linha.delay);
                 } else {
-                    // APÓS TERMINAL, VAI PRA CAIXA BRANCA
-                    setTimeout(() => {
-                        document.getElementById('telaTerminal').style.display = 'none';
-                        document.getElementById('telaFalas').style.display = 'flex';
-                        
-                        // APÓS AS FALAS, VAI PRO GIF
+                    elemento.classList.remove('typing');
+                    charIndex = 0;
+                    lineIndex++;
+                    if (lineIndex < termLines.length) {
+                        setTimeout(digitarTerminal, 600);
+                    } else {
+                        // VAI PRO TEXTO GRANDE
                         setTimeout(() => {
-                            document.getElementById('telaFalas').style.display = 'none';
-                            document.getElementById('telaGif').style.display = 'flex';
-                        }, 11000); // 11 SEGUNDOS PRA TODAS AS FALAS
-                        
-                    }, 1000);
+                            document.getElementById('terminal').style.display = 'none';
+                            document.getElementById('textoGrande').style.display = 'flex';
+                            
+                            // DEPOIS DO TEXTO, VAI PRO GIF
+                            setTimeout(() => {
+                                document.getElementById('textoGrande').style.display = 'none';
+                                document.getElementById('gifFinal').style.display = 'flex';
+                            }, 17000); // 17 SEGUNDOS PRA LER O TEXTO
+                            
+                        }, 1000);
+                    }
                 }
             }
         }
-    }
-    
-    digitarLinha();
-    
-}, 5000); // 5 SEGUNDOS DE CÓDIGOS INÚTEIS
+        
+        digitarTerminal();
+        
+    }, 1000);
+}, 8000); // 8 SEGUNDOS DE CÓDIGOS VOANDO
