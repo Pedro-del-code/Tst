@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>// TERMINAL</title>
+    <title>// SISTEMA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="terminal" id="terminal">
-        <div class="terminal-line" id="line1"></div>
-        <div class="terminal-line" id="line2"></div>
-        <div class="terminal-line" id="line3"></div>
-        <div class="terminal-line" id="line4"></div>
-        <div class="terminal-line" id="line5"></div>
-        <div class="terminal-line" id="line6"></div>
-        <div class="terminal-line" id="line7"></div>
-        <div class="terminal-line" id="line8"></div>
-        <div class="terminal-line" id="line9"></div>
-        <div class="terminal-line" id="line10"></div>
+    <!-- TELA 1: CÓDIGOS INÚTEIS -->
+    <div id="telaCodigos" class="codigoLouco"></div>
+    
+    <!-- TELA 2: TERMINAL -->
+    <div id="telaTerminal">
+        <div class="terminal-box">
+            <div class="terminal-line" id="termLine1"></div>
+            <div class="terminal-line" id="termLine2"></div>
+        </div>
     </div>
-
-    <!-- Container do vídeo do YouTube -->
-    <div class="video-container" id="videoContainer">
-        <iframe 
-            id="youtubeVideo"
-            width="100%" 
-            height="250" 
-            src="https://www.youtube.com/embed/pQzTBdeUNlU?autoplay=1&mute=0&rel=0" 
-            title="Gatinho"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-        </iframe>
-        <div class="video-message">😺 MIAU! 😺</div>
+    
+    <!-- TELA 3: CAIXA BRANCA COM FALAS -->
+    <div id="telaFalas">
+        <div class="caixa-branca">
+            <div class="fala fala1">"Eh, será que o código tá funcionando? provavelmente sim."</div>
+            <div class="fala fala2">"bom enfim bom dia todos meu nome e Pedro,"</div>
+            <div class="fala fala3">"é por meio desse código que está sendo rodado pelo professor"</div>
+            <div class="fala fala4">"quero deseja minhas sinceras desculpas."</div>
+            <div class="fala fala5">"(seria melhor eu ter reunido coragem do que tá fazendo essa ideia de merd-)"</div>
+            <div class="fala fala6">"PRIMEIRO ANO C O MELHOR DO COLÉGIO"</div>
+        </div>
+    </div>
+    
+    <!-- TELA 4: GIF FINAL -->
+    <div id="telaGif">
+        <div class="gif-container">
+            <img src="https://media.tenor.com/Zx2nMgsZ1YsAAAAi/cat-kiss.gif" alt="Gatinho">
+            <div class="final-message">😺 SISTEMA FINALIZADO 😺</div>
+        </div>
     </div>
 
     <script src="script.js"></script>
